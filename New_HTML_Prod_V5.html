@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRF vs. SNF Comparative Effectiveness Study | Derek T. Lake</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Source+Serif+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- Base & Typography --- */
+        :root {
+            --primary-blue: #005A9C;
+            --dark-blue: #003d6b;
+            --light-blue-bg: #f5f9fc;
+            --dark-text: #212529;
+            --body-text: #333;
+            --border-color: #dee2e6;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--body-text);
+            background-color: var(--white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            color: var(--dark-text);
+            line-height: 1.3;
+            margin-bottom: 0.75rem;
+        }
+
+        h1 { font-size: 2.4rem; margin-bottom: 0.5rem; }
+        h2 { font-size: 2rem; margin-top: 2.5rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; }
+        h3 { font-size: 1.5rem; font-weight: 600; color: var(--primary-blue); margin-top: 1.5rem; }
+        h4 { font-size: 1.1rem; font-weight: 700; text-transform: uppercase; color: #555; margin-top: 1.5rem; }
+
+        p {
+            margin-bottom: 1.25rem;
+        }
+
+        a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--dark-blue);
+            text-decoration: underline;
+        }
+
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Strong is used for intentional emphasis */
+        strong {
+            color: var(--dark-blue);
+            font-weight: 700;
+        }
+        
+        /* Italic text */
+        em {
+            font-style: italic;
+        }
+
+        /* Figure Notes */
+        .figure-note {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 0.9rem;
+            color: #555;
+            font-style: italic;
+            margin-top: -0.5rem; /* Pulls note closer to figure */
+            margin-bottom: 1.5rem;
+        }
+
+        .affiliation-text {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #555;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info {
+            font-family: 'Lato', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-text);
+        }
+
+        /* --- Layout & Navigation --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-section {
+            padding: 3rem 0 2rem 0;
+            background-color: var(--light-blue-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-section .authors {
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            color: #444;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-section .abstract {
+            font-size: 1.05rem;
+            font-weight: 600;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--primary-blue);
+        }
+
+        .nav-bar {
+            position: sticky;
+            top: 0;
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 0.75rem 0;
+        }
+
+        .nav-bar ul {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-bar li {
+            margin: 0 1.25rem;
+        }
+
+        .nav-bar a {
+            font-family: 'Lato', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            color: var(--body-text);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s ease, border-bottom 0.2s ease;
+        }
+
+        .nav-bar a:hover {
+            color: var(--primary-blue);
+            border-bottom: 2px solid var(--primary-blue);
+            text-decoration: none;
+        }
+
+        section {
+            padding: 2.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        /* --- Styled Components --- */
+        .btn {
+            display: inline-block;
+            font-family: 'Lato', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        .btn-outline {
+            background-color: var(--white);
+            color: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--light-blue-bg);
+            color: var(--dark-blue);
+            text-decoration: none;
+        }
+
+        .core-finding {
+            background-color: var(--light-blue-bg);
+            border-left: 5px solid var(--primary-blue);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            font-size: 1.1rem;
+        }
+        
+        .core-finding p {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .core-finding p:last-child {
+            margin-bottom: 0;
+        }
+
+        .why-box {
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin-top: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+        }
+        
+        .why-box h3 {
+            margin-top: 0;
+            color: var(--dark-text);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .why-box ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .why-box li {
+            position: relative;
+            padding-left: 1.75rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .why-box li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--primary-blue);
+            font-weight: 900;
+            font-size: 1.2rem;
+            line-height: 1.1;
+        }
+        
+        .why-box li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* --- Tabs for Results --- */
+        .tabs {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .tab-button {
+            font-family: 'Lato', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            color: #555;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .tab-button:hover {
+            color: var(--primary-blue);
+        }
+
+        .tab-button.active {
+            color: var(--primary-blue);
+            border-bottom-color: var(--primary-blue);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="hero-section">
+        <div class="container">
+            <h1>Comparative Effectiveness of Inpatient Rehabilitation Versus Skilled Nursing Facilities for Stroke and Hip Fracture Patients</h1>
+            <p class="authors">
+                Derek T. Lake¹, Soryan Kumar²,³, Fangli Geng²,⁴, Pedro Gozalo²,⁴,⁵
+            </p>
+            <p class="contact-info">
+                Contact: <a href="mailto:del2018@med.cornell.edu">del2018@med.cornell.edu</a>
+            </p>
+            <div class="affiliation-text">
+                <p>¹ Department of Population Health Sciences, Weill Cornell Medicine, New York, New York, USA<br>
+                ² Center for Gerontology and Health Care Research, Brown University School of Public Health, Providence, Rhode Island, USA<br>
+                ³ Warren Alpert Medical School, Brown University, Providence, Rhode Island, USA<br>
+                ⁴ Department of Health Services Policy and Practice, Brown University, School of Public Health, Providence, Rhode Island, USA<br>
+                ⁵ Center of Innovation, Providence VA Healthcare System, Providence, Rhode Island, USA</p>
+            </div>
+            <p class="abstract">
+                This study uses a robust quasi-experimental design to overcome selection bias in post-acute care research. We found that for stroke and hip fracture patients, discharge to an Inpatient Rehabilitation Facility (IRF) was associated with significantly lower 90-day mortality compared to a Skilled Nursing Facility (SNF). This survival benefit was observed despite no concurrent reduction in hospital readmissions.
+            </p>
+            <a href="https://doi.org/10.1111/jgs.70164" class="btn btn-primary" target="_blank" rel="noopener noreferrer">View Official Article at JAGS</a>
+        </div>
+    </header>
+
+    <nav class="nav-bar">
+        <div class="container">
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#question">The Question</a></li>
+                <li><a href="#framework">Framework</a></li>
+                <li><a href="#methods">Methods</a></li>
+                <li><a href="#findings">Key Findings</a></li>
+                <li><a href="#implications">Implications</a></li>
+                <li><a href="#paper">The Full Paper</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <section id="overview">
+            <h2>Overview</h2>
+            <div class="core-finding">
+                <p>Following hospitalization for stroke or hip fracture, discharge to an Inpatient Rehabilitation Facility (IRF) was associated with <strong>significantly lower 90-day mortality</strong> compared to a Skilled Nursing Facility (SNF).</p>
+                <p>This survival benefit was observed despite no significant difference in readmissions for stroke patients and a higher readmission rate for hip fracture patients redirected to SNF.</p>
+            </div>
+            
+            <p>Prior research comparing outcomes between Inpatient Rehabilitation Facilities (IRFs) and Skilled Nursing Facilities (SNFs) has suggested IRFs lead to better outcomes, though at a greater cost. However, these estimates face a significant challenge: confounding by indication. Patients are not randomly assigned to post-acute care (PAC) settings. IRFs, for example, select patients based on medical acuity and the ability to tolerate intensive therapy.</p>
+            
+            <p>This study uses a robust quasi-experimental design, leveraging hospital-based IRF unit closures as a natural experiment, to provide a more precise estimate of the comparative effectiveness of IRF versus SNF care.</p>
+
+            <div class="why-box">
+                <h3>Why This Paper Matters</h3>
+                <ul>
+                    <li>While redirecting patients from IRF to SNF care did not consistently reduce hospital readmissions, it was associated with a significant increase in mortality.</li>
+                    <li>This finding underscores that IRF access has a critical impact on patient survival, a factor that must be carefully weighed in post-acute care referral and payment policies.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="question">
+            <h2>The Research Question</h2>
+            <p>Why can't we just compare outcomes directly? The core challenge is <strong>selection bias</strong>. Patients discharged to IRFs are clinically different from those discharged to SNFs. IRFs are subject to Medicare's "60% Rule," which concentrates patients with specific conditions, and they preferentially admit patients who can tolerate at least three hours of daily therapy.</p>
+            
+            <p>This non-random selection means that simple comparisons are hopelessly confounded. Patients who go to IRFs may be generally younger and have a lower comorbidity burden than those discharged to SNFs.</p>
+            
+            <p>Previous studies have tried to solve this using "distance to facility" as an instrumental variable (IV). However, this instrument is imperfect. Patient and provider locations are often correlated with socioeconomic factors that independently influence health outcomes, weakening the validity of the approach. We needed a stronger, more random "shock" to the system to isolate the true causal effect of the care setting.</p>
+        </section>
+
+        <section id="framework">
+            <h2>Study Framework (The 'Complier' Approach)</h2>
+            <p>Our solution was to use a <strong>natural experiment</strong> created by the closure of hospital-based IRF units. These closures, primarily driven by hospital-level financial considerations rather than patient characteristics, act as a strong instrumental variable.</p>
+            
+            <p>This design allows us to use a <strong>cross-temporal matching approach</strong> to identify three "latent" groups of patients, similar to those in an IV framework:</p>
+            
+            <ol>
+                <li><strong>Compliers:</strong> This is our group of interest. They are the patients who were discharged to the hospital's IRF unit before it closed, but were redirected to an alternate setting (like an SNF or Home Health) after it closed.</li>
+                <li><strong>Always Takers:</strong> These patients continued to use IRF care even after the closure, likely by traveling to a free-standing IRF.</li>
+                <li><strong>Never Takers:</strong> These patients were discharged to an SNF or Home Health both before and after the IRF closure. They would not have used the IRF even when it was open.</li>
+            </ol>
+            
+            <p>By identifying these groups, we can perform a <strong>Difference-in-Differences (DiD)</strong> analysis. We compare the change in outcomes (pre-closure vs. post-closure) for the <strong>Compliers</strong> against the change in outcomes for the matched <strong>Never Takers</strong> (who serve as our control group). This method isolates the true effect of substituting SNF or Home Health care for IRF care.</p>
+            
+            <h4>Methodological Check: Propensity Score Overlap</h4>
+            <p>A key assumption for this matching to work is "positivity," meaning there is sufficient overlap in the characteristics of patients across different groups and time periods. The figure below shows the distributions of the propensity scores (the probability of discharge to IRF, SNF, or HH) for the different groups, demonstrating substantial overlap and validating the matching procedure.</p>
+            
+            <img src="SFigure_2.png" alt="Propensity Score Distributions for Stroke Patients">
+            <p class="figure-note">This plot depicts the distribution of propensity scores used in our matching approach for the IRF vs SNF comparison among stroke patients.</p>
+        </section>
+
+        <section id="methods">
+            <h2>Methods & Data</h2>
+
+            <h4>Data Sources</h4>
+            <p>We used 100% Traditional Medicare data from 2007-2019, including:</p>
+            <ul>
+                <li>Medicare Beneficiary Summary File (MBSF) for demographics, enrollment, and mortality.</li>
+                <li>MedPAR and Inpatient SAF files for index hospitalizations.</li>
+                <li>IRF-PAI and Provider of Service (POS) files to identify IRF unit closures.</li>
+                <li>Chronic Conditions Warehouse (CCW) for chronic conditions.</li>
+                <li>Residential History File (RHF) for pre-hospital residence.</li>
+            </ul>
+
+            <h4>Study Population</h4>
+            <ul>
+                <li>We identified <strong>55 hospitals</strong> that closed their IRF units between 2009 and 2017.</li>
+                <li>These hospitals had stable stroke/hip fracture volume but at least a 25% (relative) reduction in IRF discharges post-closure.</li>
+                <li>The final sample included <strong>10,761 stroke</strong> and <strong>13,963 hip fracture</strong> hospitalizations.</li>
+            </ul>
+
+            <h4>Analytical Model</h4>
+            <ul>
+                <li>We used a <strong>cross-temporal matching design</strong> to identify Compliers, Always Takers, and Never Takers.</li>
+                <li>Multinomial propensity scores for discharge to IRF, SNF, or HH were estimated using the XGBoost algorithm.</li>
+                <li>Models controlled for <strong>224 total covariates</strong>, including demographics, chronic conditions (CCW, Elixhauser), and index hospitalization details (ICD codes, LOS, ICU/CCU use).</li>
+                <li>A <strong>vector-matching approach</strong> was used to match patients within hospital clusters.</li>
+                <li>The final treatment effect was estimated using a Difference-in-Differences (DiD) model.</li>
+            </ul>
+            <a href="jgs70164-sup-0001-tables1-s4-figures1-s2.pdf" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Deep Dive: Full Statistical Methods (Supplement PDF)</a>
+        </section>
+
+        <section id="findings">
+            <h2>Key Findings</h2>
+            <p>What happens when patients who would have gone to an IRF are redirected to other settings?</p>
+            
+            <div class="tabs">
+                <button class="tab-button active" onclick="openTab(event, 'snf')">Redirected to SNF</button>
+                <button class="tab-button" onclick="openTab(event, 'hh')">Redirected to Home Health</button>
+            </div>
+
+            <!-- SNF Tab Content -->
+            <div id="snf" class="tab-content active">
+                <h3>IRF vs. SNF (Stroke & Hip Fracture)</h3>
+                
+                <h4>Finding 1: Significantly Increased Mortality</h4>
+                <p>Patients redirected from IRF to SNF experienced a substantial increase in mortality.</p>
+                <ul>
+                    <li><strong>Stroke Patients:</strong> +6.5 percentage point increase in 90-day mortality.</li>
+                    <li><strong>Hip Fracture Patients:</strong> +5.8 percentage point increase in 90-day mortality.</li>
+                </ul>
+                <p>This effect was largest in the first 20 days post-discharge, aligning with the typical IRF length of stay, and remained stable through 90 days. We also found that specific conditions, such as hemorrhagic stroke, white blood cell diseases, and liver disease, were associated with this increased mortality risk (see Supplemental Table S4).</p>
+
+                <h4>Finding 2: No Readmission Benefit</h4>
+                <p>The higher mortality in SNFs was not offset by a reduction in hospital readmissions.</p>
+                <ul>
+                    <li><strong>Stroke Patients:</strong> No significant difference in readmission rates at any time point.</li>
+                    <li><strong>Hip Fracture Patients:</strong> A significant <strong>increase</strong> in 30-day readmissions (+5.8 percentage points).</li>
+                </ul>
+
+                <h4>Finding 3: No Change in Community Discharge</h4>
+                <p>We found no statistically significant differences in the rate of successful community discharge for either stroke or hip fracture patients redirected to an SNF.</p>
+                
+                <img src="Figure_1.png" alt="Figure 1: IRF vs SNF Outcomes for Stroke and Hip Fracture">
+                <p class="figure-note">DID = Difference in differences, unadjusted mean values and DID point estimates (bars) and 95% confidence interval (black lines).</p>
+
+                <img src="Figure_2.png" alt="Figure 2: Stroke DID Mortality Estimates by Days Post-Discharge">
+                <p class="figure-note">DID = Difference in differences, point estimates (circle dots) and 95% confidence intervals (dotted lines) every ten-day increment up to 180 days following hospital discharge.</p>
+                
+                <img src="Figure_3.png" alt="Figure 3: Hip Fracture DID Mortality Estimates by Days Post-Discharge">
+                <p class="figure-note">DID = Difference in differences, point estimates (circle dots) and 95% confidence intervals (dotted lines) every ten-day increment up to 180 days following hospital discharge.</p>
+
+            </div>
+
+            <!-- Home Health Tab Content -->
+            <div id="hh" class="tab-content">
+                <h3>IRF vs. Home Health (Stroke)</h3>
+                
+                <h4>Finding 1: No Change in Mortality or Readmissions</h4>
+                <p>For stroke patients, redirection from IRF to home with home health (HH) was not associated with any significant change in mortality or readmission rates.</p>
+                
+                <h4>Finding 2: Improved Rate of Successful Community Discharge</h4>
+                <p>Stroke patients who received HH instead of IRF had a <strong>significantly higher</strong> likelihood of a successful community discharge.</p>
+                <ul>
+                    <li><strong>Stroke Patients:</strong> +6.8 percentage point increase in successful community discharge.</li>
+                </ul>
+                <p>This suggests that for some stroke patients, avoiding an institutional stay by discharging directly home with HH may lead to a more stable return to the community.</p>
+                
+                <img src="SFigure_1.png" alt="Figure S1: IRF vs Home Health Outcomes for Stroke Patients">
+            </div>
+        </section>
+
+        <section id="implications">
+            <h2>Implications & Limitations</h2>
+            
+            <h3>Implications</h3>
+            <ul>
+                <li><strong>For Policymakers:</strong> Financial incentives from Medicare Advantage or value-based programs that strongly discourage IRF utilization must be balanced with clinical needs. Our findings suggest that restricting IRF access for these patients could lead to a tangible increase in patient mortality.</li>
+                <li><strong>For Clinicians & Health Systems:</strong> IRF care appears to provide a clear survival advantage over SNFs for high-risk stroke and hip fracture patients. This is likely due to greater rehabilitation intensity, better continuity of care, and faster access to specialists in the hospital-based IRF setting.</li>
+            </ul>
+
+            <h3>Limitations</h3>
+            <ul>
+                <li><strong>Unmeasured Confounding:</strong> Despite our robust design, we cannot rule out residual confounding from factors not fully captured in administrative data. This includes patient-level rehabilitation tolerance (a key IRF admission criterion), cognitive function, frailty, or social support.</li>
+                <li><strong>Outcomes:</strong> We could not evaluate functional or cognitive improvement due to differences in assessment tools across PAC settings (e.g., IRF-PAI vs. MDS).</li>
+                <li><strong>Generalizability:</strong> Our results, based on hospital-based IRF closures, may not be fully generalizable to free-standing IRFs, which may serve a different case mix.</li>
+            </ul>
+        </section>
+
+        <section id="paper" style="border-bottom: none;">
+            <h2>The Full Paper</h2>
+            <p>This research was published in the <em>Journal of the American Geriatrics Society</em>.</p>
+            <p><strong>Full Citation:</strong> Lake D, Kumar S, Geng F, Gozalo P. Comparative Effectiveness of Inpatient Rehabilitation Versus Skilled Nursing Facilities for Stroke and Hip Fracture Patients. <em>Journal of the American Geriatrics Society</em>. 2025.</p>
+            
+            <div>
+                <a href="https://doi.org/10.1111/jgs.70164" class="btn btn-primary" target="_blank" rel="noopener noreferrer">View Official Article at JAGS</a>
+                <a href="#" class="btn btn-outline" id="download-link">Download This Webpage (HTML)</a>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // --- Script for Tabs ---
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        
+        // --- Script for HTML Download Button ---
+        const downloadLink = document.getElementById('download-link');
+        downloadLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Create a Blob from the current page's HTML
+            const pageHTML = document.documentElement.outerHTML;
+            const blob = new Blob([pageHTML], {type: 'text/html'});
+            
+            // Create a temporary URL
+            const url = URL.createObjectURL(blob);
+            
+            // Create a temporary <a> element to trigger the download
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'lake_irf_snf_study.html'; // Set the file name
+            
+            // Trigger the download
+            a.click();
+            
+            // Clean up the temporary URL
+            URL.revokeObjectURL(url);
+        });
+    </script>
+
+</body>
+</html>
