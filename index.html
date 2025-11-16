@@ -442,7 +442,7 @@
                 <li><a href="#question">The Question</a></li>
                 <li><a href="#framework">Framework</a></li>
                 <li><a href="#methods">Methods</a></li>
-                <li><a href="#methods-appendix">Methods Appendix</a></li>
+                <li><a href="#matching-walkthrough">Matching Walk-through</a></li>
                 <li><a href="#findings">Key Findings</a></li>
                 <li><a href="#implications">Implications</a></li>
                 <li><a href="#paper">The Full Paper</a></li>
@@ -533,15 +533,15 @@
             <a href="Supplement.pdf" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Deep Dive: Full Statistical Methods (Supplement PDF)</a>
         </section>
 
-        <section id="methods-appendix" class="methods-slideshow">
-            
+        <section id="matching-walkthrough" class="methods-slideshow">
+
             <h2>
-                Appendix: Visual Walk-through of Vector Matching
+                Visual Walk-through of Cross-Temporal Vector Matching
             </h2>
 
-            <p>The core of this study's design is **cross-temporal matching**. To estimate the causal effect of IRF care, we needed to identify a valid counterfactual. We did this by finding patients in the post-closure period who were diverted to a SNF but were otherwise identical to the patients who received IRF care in the pre-closure period. These are the **"Compliers"**.</p>
-            
-            <p>To solve this, we used a **two-stage vector matching** method. This approach forces the match to be close on the primary `pr(IRF)` score *while also* ensuring the probabilities for the other settings (`pr(SNF)` and `pr(HH)`) are also similar. This click-through slide deck walks through the exact logic, step-by-step.</p>
+            <p>The core of this study's design is <strong>cross-temporal matching</strong>. To estimate the causal effect of IRF care, we needed to identify a valid counterfactual. We did this by finding patients in the post-closure period who were diverted to a SNF but were otherwise identical to the patients who received IRF care in the pre-closure period. These are the <strong>"Compliers"</strong>.</p>
+
+            <p>To solve this, we used a <strong>two-stage vector matching</strong> method. This approach forces the match to be close on the primary `pr(IRF)` score *while also* ensuring the probabilities for the other settings (`pr(SNF)` and `pr(HH)`) are also similar. This click-through slide deck walks through the exact logic, step-by-step.</p>
 
             <div class="slideshow-container">
                 
