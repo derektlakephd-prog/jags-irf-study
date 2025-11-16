@@ -557,7 +557,7 @@
                 Visual Walk-through of Cross-Temporal Vector Matching
             </h2>
     
-            <p>In the 'Methods' section, we mentioned using a <strong>cross-temporal, two-stage vector matching</strong> method to identify our "Complier" group. Because this method is central to the study's validity, this section provides a detailed, step-by-step visual guide to how it works.</p>
+            <p>In the 'Methods' section, we mentioned using a <strong>cross-temporal, two-stage vector matching</strong> method. Because this method is central to the study's validity, this section provides a detailed, step-by-step visual guide to how it works.</p>
             
             <p>The goal was to find a valid counterfactual: a post-closure SNF patient who was truly similar to a pre-closure IRF patient. This required matching not just on one propensity score, but on the <em>entire vector</em> of probabilities for IRF, SNF, and Home Health (HH).</p>
 
@@ -566,48 +566,48 @@
                 <div class="slide">
                     <img src="Slide1.png" alt="Overview of Patient Propensity Vectors">
                     <div class="slide-caption">
-                        <h4>Patient Cohorts</h4>
-                        <p>This slide introduces the key patient groups: Pre-closure IRF patients (our treatment group) and Post-closure SNF patients (our potential control group). Each patient has a vector of propensity scores: `pr(IRF)` (blue), `pr(SNF)` (orange), and `pr(HH)` (purple).</p>
+                        <h4>The Setup: Patient Cohorts</h4>
+                        <p>Here we have our <strong>Target Group</strong> (IRF patients before the closure) and our pool of <strong>Potential Controls</strong> (SNF patients after the closure). Note that every patient has a "vector" of three probabilities—one for each setting (IRF, SNF, HH).</p>
                     </div>
                 </div>
 
                 <div class="slide">
                     <img src="Slide2.png" alt="Vector Match Step 1 for Patient 1">
                     <div class="slide-caption">
-                        <h4>Match Process for IRF Patient 1 - Step 1</h4>
-                        <p><strong>Step 1: The `pr(SNF)` Caliper.</strong> We take `IRF Patient 1`, who has a 25% `pr(SNF)`. We apply a +/- 10% caliper (range: 15%-35%). `SNF Patient 1` (30%) and `SNF Patient 2` (15%) pass. `SNF Patient 3` (40%) is excluded.</p>
+                        <h4>Step 1: The 'SNF' Caliper Check</h4>
+                        <p>We start with <strong>IRF Patient 1</strong>. Before we look at their IRF score, we first check if the potential matches had a similar probability of going to a SNF. We apply a strict <strong>+/- 10% caliper</strong> around the target's SNF score (25%). <strong>SNF Patient 3</strong> (40%) is too far away, so they are immediately disqualified.</p>
                     </div>
                 </div>
 
                 <div class="slide">
                     <img src="Slide3.png" alt="Vector Match Step 2 for Patient 1">
                     <div class="slide-caption">
-                        <h4>Match Process for IRF Patient 1 - Step 2</h4>
-                        <p><strong>Step 2: Nearest Neighbor on `pr(IRF)`.</strong> From the two patients who passed Step 1, we find the nearest neighbor on `pr(IRF)`. Our target is 65%. `SNF Patient 1` (60%) is much closer than `SNF Patient 2` (80%). Therefore, <strong>`SNF Patient 1` is the match.</strong></p>
+                        <h4>Step 2: Finding the Nearest Neighbor</h4>
+                        <p>Now we look at the remaining candidates (Patients 1 and 2) to see who is the best match on the primary variable: <strong>pr(IRF)</strong>. Our target has a 65% probability. <strong>SNF Patient 1</strong> (60%) is much closer than Patient 2 (80%). Therefore, <strong>SNF Patient 1 is selected as the best match.</strong></p>
                     </div>
                 </div>
 
                 <div class="slide">
                     <img src="Slide4.png" alt="Vector Match Step 1 for Patient 2">
                     <div class="slide-caption">
-                        <h4>Match Process for IRF Patient 2 - Step 1</h4>
-                        <p><strong>Step 1 (Repeated): The `pr(SNF)` Caliper.</strong> The process repeats for `IRF Patient 2`, who has a 7% `pr(SNF)`. Applying the +/- 10% caliper (range: -3% to 17%), only `SNF Patient 2` (15%) passes this first test.</p>
+                        <h4>Repeat: Processing Patient 2</h4>
+                        <p>We repeat the process for <strong>IRF Patient 2</strong>. Looking at the SNF scores (orange), we apply the +/- 10% caliper again. This time, only <strong>SNF Patient 2</strong> falls within the acceptable range. The others are disqualified.</p>
                     </div>
                 </div>
 
                 <div class="slide">
                     <img src="Slide5.png" alt="Vector Match Step 2 for Patient 2">
                     <div class="slide-caption">
-                        <h4>Match Process for IRF Patient 2 - Step 2</h4>
-                        <p><strong>Step 2 (Repeated): Nearest Neighbor on `pr(IRF)`.</strong> Since `SNF Patient 2` was the only patient to pass the caliper, they become the match. We confirm the `pr(IRF)` scores are reasonably close (90% vs. 80%). <strong>`SNF Patient 2` is the match.</strong></p>
+                        <h4>Step 2: Confirming the Match</h4>
+                        <p>Since <strong>SNF Patient 2</strong> is the only candidate who survived the Step 1 caliper, they are selected as the match (provided their primary IRF score is within a reasonable distance, which it is).</p>
                     </div>
                 </div>
 
                 <div class="slide">
                     <img src="Slide6.png" alt="Final Matched Compliers">
                     <div class="slide-caption">
-                        <h4>Final Matched Cohort</h4>
-                        <p>The final result is a matched cohort of "Compliers." We have successfully identified the most appropriate counterfactuals for our pre-closure IRF patients. `SNF Patient 3` was correctly excluded as their propensity vector was too dissimilar to be a valid match for either patient.</p>
+                        <h4>The Result: A Matched Cohort</h4>
+                        <p>The final result is a set of "Compliers." We have successfully paired our IRF patients with the specific SNF patients who look just like them across the <em>entire</em> probability vector. This ensures we are comparing apples to apples.</p>
                     </div>
                 </div>
 
@@ -615,6 +615,7 @@
                 <a class="next" onclick="changeSlide(1)">&#10095;</a>
             </div>
         </section>
+        ```
         <section id="findings">
             <h2>Key Findings</h2>
             <p>What happens when patients who would have gone to an IRF are redirected to other settings?</p>
