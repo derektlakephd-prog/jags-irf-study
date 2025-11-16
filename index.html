@@ -533,6 +533,24 @@
             <a href="Supplement.pdf" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Deep Dive: Full Statistical Methods (Supplement PDF)</a>
         </section>
 
+        <section id="ml-estimation">
+            <h2>Propensity Score Estimation: A Machine Learning Approach</h2>
+            
+            <p>A critical challenge in cross-temporal matching is ensuring that propensity scores are robust not just for the patients they were trained on, but for patients in a different time period. In standard cross-sectional matching, overfitting is rarely a fatal flaw. However, in a cross-temporal design, a model that is "overfit" to the pre-closure period will fail to accurately predict probabilities for post-closure patients, invalidating the match.</p>
+
+            <div class="why-box">
+                <h3>Why We Used Ensemble Machine Learning</h3>
+                <p>To solve the out-of-sample prediction challenge, we did not rely on standard logistic regression. Instead, we utilized an <strong>ensemble machine learning approach</strong> (heavily weighted toward <strong>XGBoost</strong>) designed specifically to optimize out-of-sample prediction.</p>
+                <ul>
+                    <li><strong>Rigorous Validation:</strong> For every model, we performed <em>K=1000</em> rounds of training on 80% of observations and testing on the remaining 20%. This ensured the model could accurately predict discharge probabilities for patients it had never seen before.</li>
+                    <li><strong>Geography Matters:</strong> Predictors of discharge are highly dependent on local geography, hospital triage culture, and the density of nearby PAC facilities. A national model would miss these nuances.</li>
+                    <li><strong>Hospital-Specific Modeling:</strong> We fit a <strong>separate propensity score model for each specific hospital</strong> in our sample. This allowed us to account for the unique "referral ecosystem" of each facility, including the distance from the beneficiary’s residence to available IRFs and SNFs.</li>
+                </ul>
+                <p style="margin-top: 1rem; font-size: 0.95rem; color: #555;"><em><strong>Result:</strong> This approach ensured that our cohorts were well-matched not just at the pooled national level, but within each individual hospital, providing a high degree of internal validity.</em></p>
+            </div>
+        </section>
+        ```
+        
         <section id="matching-walkthrough" class="methods-slideshow">
             
             <h2>
