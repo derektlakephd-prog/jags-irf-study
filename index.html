@@ -474,11 +474,11 @@
 
         <section id="question">
             <h2>The Research Question</h2>
-            <p>Why can't we just compare outcomes directly? The core challenge is <strong>selection bias</strong>. Patients discharged to IRFs are clinically different from those discharged to SNFs. IRFs are subject to Medicare's "60% Rule," which concentrates patients with specific conditions, and they preferentially admit patients who can tolerate at least three hours of daily therapy.</p>
+            <p>Why can't we just compare outcomes directly? The core challenge is <strong>selection bias</strong>. Patients discharged to IRFs are clinically different from those discharged to SNFs. For example, IRFs only admit patients who can tolerate at least three hours of daily therapy.</p>
             
             <p>This non-random selection means that simple comparisons are hopelessly confounded. Patients who go to IRFs may be generally younger and have a lower comorbidity burden than those discharged to SNFs.</p>
             
-            <p>Previous studies have tried to solve this using "distance to facility" as an instrumental variable (IV). However, this instrument is imperfect. Patient and provider locations are often correlated with socioeconomic factors that independently influence health outcomes, weakening the validity of the approach. We needed a stronger, more random "shock" to the system to isolate the true causal effect of the care setting.</p>
+            <p>Previous studies have tried to solve this using "distance to facility" as an instrumental variable (IV). However, this instrument is imperfect. Patient and provider locations are often correlated with socioeconomic factors that independently influence health outcomes, weakening the validity of the approach. Our study uses a stronger, more random "shock" to the system that helps isolate the true causal effect of the care setting.</p>
         </section>
 
         <section id="framework">
@@ -488,9 +488,9 @@
             <p>This design allows us to use a <strong>cross-temporal matching approach</strong> to identify three "latent" groups of patients, similar to those in an IV framework:</p>
             
             <ol>
-                <li><strong>Compliers:</strong> This is our group of interest. They are the patients who were discharged to the hospital's IRF unit before it closed, but were redirected to an alternate setting (like an SNF or Home Health) after it closed.</li>
+                <li><strong>Compliers:</strong> This is our group of interest. They are the patients who were discharged to the hospital's IRF unit before the IRF unit closed, but were redirected to an alternate setting (like an SNF or Home Health) after it closed.</li>
                 <li><strong>Always Takers:</strong> These patients continued to use IRF care even after the closure, likely by traveling to a free-standing IRF.</li>
-                <li><strong>Never Takers:</strong> These patients were discharged to an SNF or Home Health both before and after the IRF closure. They would not have used the IRF even when it was open.</li>
+                <li><strong>Never Takers:</strong> These patients were discharged to SNF or Home Health both before and after the IRF closure. They would not have used the IRF even when it was open.</li>
             </ol>
             
             <p>By identifying these groups, we can perform a <strong>Difference-in-Differences (DiD)</strong> analysis. We compare the change in outcomes (pre-closure vs. post-closure) for the <strong>Compliers</strong> against the change in outcomes for the matched <strong>Never Takers</strong> (who serve as our control group). This method isolates the true effect of substituting SNF or Home Health care for IRF care.</p>
@@ -509,9 +509,9 @@
             <p>We used 100% Traditional Medicare data from 2007-2019, including:</p>
             <ul>
                 <li>Medicare Beneficiary Summary File (MBSF) for demographics, enrollment, and mortality.</li>
-                <li>MedPAR and Inpatient SAF files for index hospitalizations.</li>
+                <li>MedPAR and Inpatient claims files for index hospitalizations.</li>
                 <li>IRF-PAI and Provider of Service (POS) files to identify IRF unit closures.</li>
-                <li>Chronic Conditions Warehouse (CCW) for chronic conditions.</li>
+                <li>Chronic Conditions Warehouse (CCW) for clinical history of chronic conditions.</li>
                 <li>Residential History File (RHF) for pre-hospital residence.</li>
             </ul>
 
@@ -527,7 +527,7 @@
                 <li>We used a <strong>cross-temporal matching design</strong> to identify Compliers, Always Takers, and Never Takers.</li>
                 <li>Multinomial propensity scores for discharge to IRF, SNF, or HH were estimated using the XGBoost algorithm.</li>
                 <li>Models controlled for <strong>224 total covariates</strong>, including demographics, chronic conditions (CCW, Elixhauser), and index hospitalization details (ICD codes, LOS, ICU/CCU use).</li>
-                <li>A <strong>vector-matching approach</strong> was used to match patients within hospital clusters.</li>
+                <li>A <strong>vector-matching approach</strong> was used to match patients pre- and post-closure within hospital clusters.</li>
                 <li>The final treatment effect was estimated using a Difference-in-Differences (DiD) model.</li>
             </ul>
             <a href="Supplement.pdf" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Deep Dive: Full Statistical Methods (Supplement PDF)</a>
@@ -639,8 +639,8 @@
                 <h4>Finding 2: No Readmission Benefit</h4>
                 <p>The higher mortality in SNFs was not offset by a reduction in hospital readmissions.</p>
                 <ul>
-                    <li><strong>Stroke Patients:</strong> No significant difference in readmission rates at any time point.</li>
-                    <li><strong>Hip Fracture Patients:</strong> A significant <strong>increase</strong> in 30-day readmissions (+5.8 percentage points).</li>
+                    <li><strong>Stroke Patients:</strong> Had no significant difference in readmission rates at any time point.</li>
+                    <li><strong>Hip Fracture Patients:</strong> Had a significant <strong>increase</strong> in 30-day readmissions (+5.8 percentage points).</li>
                 </ul>
 
                 <h4>Finding 3: No Change in Community Discharge</h4>
